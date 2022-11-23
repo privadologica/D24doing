@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <title>Dúo 24 | New living</title>
+    <meta name="title" content="Dúo 24 | New Living">
+    <meta name="description" content="Experiencia web 3D interactiva.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inv.duo24.mx/">
+    <meta property="og:title" content="Dúo 24 | New Living">
+    <meta property="og:description" content="Experiencia web 3D interactiva.">
+    <meta property="og:image" content="https://d24.logicaexp.com/assets/img/webpreview.jpg?raw=true">
+    <meta property="og:image:type" content="image/png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://inv.duo24.mx/">
+    <meta property="twitter:title" content="Dúo 24 | New Living">
+    <meta property="twitter:description" content="Experiencia web 3D interactiva.">
+    <meta property="twitter:image" content="https://d24.logicaexp.com/assets/img/webpreview.jpg?raw=true">
+    <meta property="twitter:image:type" content="image/png">
+
+
+    <link id="favicon" rel="icon" href="assets/img/favicon.ico">
+
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-197558561-8', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <link rel="stylesheet" href="flickity.css">
+    <link rel="stylesheet" href="css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="pep.js"></script>
+</head>
+
+<body>
+    <div class="loader loadingScreenMostrar " id="loadingScreen">
+        <div class="loader-content">
+            <img class="logoEmpresaLoader" src="assets/svg/logoIntro.svg" alt="">
+            <div class="cargandoLoader" id="tCargando">Cargando</div>
+        </div>
+    </div>
+
+    <div id="fps" class="hidden">0</div>
+
+    <div class="fade" id="fadeDom"></div>
+
+    <div id="spinnerBottomLeft" class="spinnerBottomLeft spinnerBottomLeftOculto">
+        <img src="assets/img/spinner.gif" alt="spinner">
+    </div>
+
+    <div class="loadingScreenOut loadingScreenOutFade hidden" id="loadingScreenOut"></div>
+
+    <div class="logoTopIzquierda" id="logoTopIzquierda">
+        <!-- <a href="paginaweb del proyecto"> -->
+        <img src="assets/svg/logoTopIzq.svg" draggable="false" style="width: 100%"></a>
+    </div>
+
+    <div class="btn-contacto-esquina logoContacto hidden1" id="btnContacto">
+        <div class="btn-contacto__var-esquina" id="botonEsquina2"></div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" id="contactoExpanded">
+        <div class="panelContacto">
+            <div class="contactoHijo">
+                <p class="btn-contacto__var-title" id="tContacto">Contacto</p>
+                <div class="btn-contacto__item wp">
+                    <img src="assets/svg/wp.svg" alt="">
+                    <div class="btn-contacto__info">
+                        <div class="btn-contacto__name" id="tWhatsapp">Whatsapp</div>
+                        <div class="btn-contacto__value">
+                            <a href="https://api.whatsapp.com/send/?phone=5215544445555&amp;text&amp;app_absent=0"
+                                target="_blank" id="refWhatsapp01" class="whatsAppBreathing">01 (55) 5555 4444</a>
+                        </div>
+                        <div class="btn-contacto__value">
+                            <a href="https://api.whatsapp.com/send/?phone=5215544445555&amp;text&amp;app_absent=0"
+                                target="_blank" id="refWhatsapp02" class="whatsAppBreathing">01 (55) 5555 4444</a>
+                        </div>
+                        <div class="btn-contacto__value">
+                            <a href="https://api.whatsapp.com/send/?phone=5215544445555&amp;text&amp;app_absent=0"
+                                target="_blank" id="refWhatsapp03" class="whatsAppBreathing">01 (55) 5555 4444</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-contacto__item wp">
+                    <img src="assets/svg/mail.svg" alt="">
+                    <div class="btn-contacto__info">
+                        <div class="btn-contacto__name" id="tCorreo">Correo</div>
+                        <div class="btn-contacto__value">
+                            <a href="mailto:contacto@ejemplo.com.mx" id="refCorreo">contacto@ejemplo.com.mx</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-contacto__item wp" style="margin-bottom: 2.5rem;">
+                    <img src="assets/svg/phone.svg" alt="">
+                    <div class="btn-contacto__info">
+                        <div class="btn-contacto__name" id="tTelefonos">Teléfonos</div>
+                        <div class="btn-contacto__value">
+                            <a href="tel:5544445555" id="refTel01">01 (55) 5555 4444</a>
+                        </div>
+                        <div class="btn-contacto__value">
+                            <a href="tel:5544445555" id="refTel02">01 (55) 5555 9111</a>
+                        </div>
+                        <div class="btn-contacto__value">
+                            <a href="tel:5544445555" id="refTel03">01 (55) 5555 9111</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="btn-contacto__btngroup">
+                    <div>
+                        <div class="btn-contacto__btngroup-settings" id="contact-settings"></div>
+                    </div>
+                    <div class="btn-ficha__btngroup-back" id="btnRegresar1">Regresar</div>
+                    <div style="width: 3rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="group-btn hidden" id="btnsIniciales">
+        <div class="group-btn__item hidden1 " id="btnDepartamentos" style="transition: all 0.3s;">Departamentos</div>
+        <div class="group-btn__item hidden1 " id="btnSobreElProyecto" style="transition: all 0.3s;">Sobre el proyecto
+        </div>
+    </div>
+
+    <div class="group-btn hidden" id="btnsSobreElProyecto">
+        <div class="group-btn__item hidden1 " id="btnAmenidades" style="transition: all 0.3s;">Amenidades</div>
+        <div class="group-btn__item hidden1 " id="btnUbicacion" style="transition: all 0.3s;">Ubicación</div>
+        <div class="group-btn__back regresar hidden1 " id="btnRegresar2543">Regresar</div>
+    </div>
+
+    <div class="group-btn hidden" id="btnsSelecciona360">
+        <div class="group-btn__title hidden1" id="tSeleccionaAmenidad">Selecciona una amenidad</div>
+        <div class="group-btn__item item-2 hidden" id="btnVerPlantaAltaAm">Ver planta alta</div>
+        <div class="group-btn__item item-2 hidden1" id="btnVerPlantaBajaAm">Ver planta baja</div>
+        <div class="group-btn__back regresar hidden1 " id="btnRegresar2123">Regresar</div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" id="panelCargando360" style="background-color: rgb(0 0 0 / 0%);">
+        <div class="group-btn__detalle cargando360">
+            <p class="btn-detalle__var-title cargando360anim">Cargando</p>
+            <div class="btn-detalle__btngroup360Cargando">
+                <div class="group-btn__back" id="btnCancelar360">Cancelar</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="group-btn hidden" id="btnsSeleccionaDepartamento">
+        <div class="group-btn__title hidden1" id="tSeleccionaUnDepartamento">Selecciona un departamento</div>
+        <div class="group-btn__back regresar hidden1 " id="btnRegresar3">Regresar</div>
+    </div>
+
+
+    <div class="group-btn hidden" id="UIdepartamentoSeleccionado">
+        <div class="group-btn__title_dpto hidden1" id="nombreDepartamento">1005</div>
+        <div class="group-btn__item item-2 hidden hidden1 " id="btnIngresar">Ingresar</div>
+        <div class="group-btn__item item-2 hidden1  atencionBounce" id="btnVistaInterior">Ver interior</div>
+        <div class="group-btn__item item-2 hidden" id="btnVerPlantaAlta">Ver planta alta</div>
+        <div class="group-btn__item item-2 hidden" id="btnVerPlantaBaja">Ver planta baja</div>
+        <div class="group-btn__item item-2 hidden1 " id="btnFichaTecnica">Ficha técnica</div>
+        <div class="group-btn__back regresar hidden1 " id="btnRegresar4">Regresar</div>
+    </div>
+
+    <div class="group-btn hidden" id="btnsCaminando">
+        <div class="group-btn__title hidden1" id="tTocaParaCaminar">Toca para desplazarte</div>
+        <div class="group-btn__back regresar hidden1 " id="btnRegresar11">Regresar</div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" id="panelEscalerasCaminando">
+        <div class="panelEscalerasCaminando1">
+            <p class="btn-detalle__var-title" id="tSubirOBajarEscaleras" style="
+            margin: 1rem 0 1.2rem 0">¿Ir a planta alta?</p>
+            <div class="panelEscalerasCaminando2">
+                <div class="btn_Okay" id="btnDeAcuerdoSubirOBajar">Si</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="group-btn hidden" id="btnsUbicacionInicio">
+        <div class="ubicacionTextoSecundarioContainer hidden2" id="ubicacionTextoSecundarioContainer">
+            <div class="ubicacionTextoSecundarioContainer2">
+                <img class="iconoUbicacionSecundario" src="assets/svg/iconoUbicacionesCarro.svg" alt=""
+                    style="    height: 27px;">
+                <p class="ubicacionTextoSecundarioMedida" id="ubicacionMedidaTiempo">3 min</p>
+            </div>
+            <div class="ubicacionTextoSecundarioContainer2">
+                <img class="iconoUbicacionSecundario" src="assets/svg/iconoUbicacionesRegla.svg" alt=""
+                    style="    height: 27px;">
+                <p class="ubicacionTextoSecundarioMedida" id="ubicacionMedidaDistancia">5 km</p>
+            </div>
+        </div>
+
+        <div class="ubicacionTextoPrincipal hidden1" id="tUbicacionNombreDeSeleccion">Selecciona una ubicación</div>
+
+        <div class="ubicacionBotonesPrincipalesContainer">
+            <div class="ubicacionBotonesPrincipales hidden1" id="btnUbicacionShopping">
+                <img src="assets/svg/iconoUbicacionesShopping.svg" alt="" style="pointer-events: none; height: 27px;">
+            </div>
+            <div class="ubicacionBotonesPrincipales hidden1" id="btnUbicacionHealth">
+                <img src="assets/svg/iconoUbicacionesHealth.svg" alt="" style="pointer-events: none; height: 27px;">
+            </div>
+            <div class="ubicacionBotonesPrincipales hidden1" id="btnUbicacionSchools">
+                <img src="assets/svg/iconoUbicacionesSchool.svg" alt="" style="pointer-events: none;">
+            </div>
+        </div>
+
+        <div class="group-btn__back regresar hidden1" id="btnRegresarUbicacionPrincipal">Regresar</div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" style="z-index: 99999;" id="ubicacionPanelSeleccionHealth">
+        <div class="group-btn__detalle">
+            <div id="ubicacionPanelSeleccionHealthInsertar" class="ubicacionSeleccionContainer">
+            </div>
+        </div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" style="z-index: 99999;" id="ubicacionPanelSeleccionShopping">
+        <div class="group-btn__detalle">
+            <div id="ubicacionPanelSeleccionShoppingInsertar" class="ubicacionSeleccionContainer">
+            </div>
+        </div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" style="z-index: 99999;" id="ubicacionPanelSeleccionSchool">
+        <div class="group-btn__detalle">
+            <div id="ubicacionPanelSeleccionSchoolInsertar" class="ubicacionSeleccionContainer">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="group-btn hidden" id="carrouselAmenidades">
+        <div class="group-btn__title_carrusel btnsCarrusel hidden1" id="carrouselAmenidadTitulo">Sala de juegos</div>
+        <div class="carrousel-btn__group">
+
+            <div class="group-btn__item btnsCarrusel hidden1 " id="btnVerInfoAmenidad">Ver información</div>
+
+        </div>
+        <div class="group-btn__back regresar btnsCarrusel hidden1 " id="btnRegresar9">Regresar</div>
+    </div>
+
+
+    <div class="group-btn__detalle-background" id="fichaAmenidad">
+        <div class="group-btn__detalle" id="group-btn__detalle">
+            <p class="btn-detalle__var-title" id="detalleAmenidadTitulo"></p>
+            <div class="nonflex" id="insertarCarrouselAmenidades">
+            </div>
+
+            <div class="btn-detalle__botinfo-content">
+                <p id="detalleAmenidadDescripcion"></p>
+            </div>
+
+            <div class="btn-detalle__btngroup">
+                <div class="btn-ficha__btngroup-back" id="btnRegresar10">Regresar</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="carousel-fullscreen hidden" id="carrouselFullscreen"></div>
+
+    <div class="hidden" id="regresarFullscreen">
+        <div class="group-btn hidden1" style="z-index: 999999;">
+            <div class="group-btn__back backFullScreen regresar hidden1" id="btnRegresar5">Regresar</div>
+        </div>
+        <div class="tacheEsquinaContainer hidden1" id="tacheEsquinaContainer"></div>
+    </div>
+
+
+    <div class="group-btn__detalle-background" id="fichaDepartamento">
+        <div class="group-btn__detalle">
+            <div class="nonflex" id="insertarCarrouselDepartamentos"></div>
+
+            <div class="fichaDptosContainer1">
+
+                <div class="fichaDptosContainer2">
+                    <div class="fichaDptosContainer3">
+                        <div class="fichaDptoTextoNombre" id="fichaDptoTextoNombre">101</div>
+                    </div>
+                    <div class="fichaDptoTextoDisponibilidad" id="fichaDptoTextoDisponibilidad">DISPONIBLE</div>
+                </div>
+
+                <div class="fichaDptosContainer2">
+                    <div class="fichaDptoTextoMetros" id="fichaDptoTextoMetros">80.65 m2</div>
+                    <div class="fichaDptoTextoPrecio" id="fichaDptoTextoPrecio">$5,000,000</div>
+                </div>
+
+                <div class="fichaDptosContainerIconos0">
+                    <div class="fichaDptosContainerIconos1">
+                        <div class="fichaDptosContainerIconos2">
+                            <div class="fichaNumeroDeIconos" id="fichaNumeroDeIconosRecamaras">2</div>
+                            <img src="assets/svg/iconoDptosRecamaras.svg" class="fichaIconos" style="width: 30px;">
+                        </div>
+    
+                        <div class="fichaDptosContainerIconos2">
+                            <div class="fichaNumeroDeIconos" id="fichaNumeroDeIconosCajones">2</div>
+                            <img src="assets/svg/iconoDptosCajones.svg" class="fichaIconos" style="width: 30px;">
+                        </div>
+    
+                        <div class="fichaDptosContainerIconos2">
+                            <div class="fichaNumeroDeIconos" id="fichaNumeroDeIconosBodegas">2</div>
+                            <img src="assets/svg/iconoDptosBodegas.svg" class="fichaIconos" style="width: 30px;">
+                        </div>
+                    </div>
+                    <div class="fichaDptosContainerIconos1">
+                        <div class="fichaDptosContainerIconos2">
+                            <div class="fichaNumeroDeIconos" id="fichaNumeroDeIconosBaños">2</div>
+                            <img src="assets/svg/iconoDptosBaños.svg" class="fichaIconos" style="width: 25px;">
+                        </div>
+    
+                        <div class="fichaDptosContainerIconos2">
+                            <div class="fichaNumeroDeIconos" id="fichaNumeroDeIconosCtoServicio">2</div>
+                            <img src="assets/svg/iconoDptosCtoServicio.svg" class="fichaIconos" style="width: 27px;">
+                        </div>
+                        <div class="fichaDptosContainerIconos2">
+                            <img src="assets/svg/iconoDptosFlex.svg" class="fichaIconos" id="fichaIconoFlex" style="width: 50px;margin-left: 0;">
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="group-btn__item meInteresa item-2" id="btnMeInteresa">Me interesa</div>
+            
+            <div class="btn-detalle__btngroup">
+                <div class="btn-ficha__btngroup-back" id="btnRegresar6">Regresar</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" style="z-index: 99999;" id="avisoDisclaimerPrecio">
+        <div class="group-btn__detalle" style="max-height: 150px;">
+            <div class="btn-detalle__botinfo-content">
+                <p style="margin: 20px;font-size: 16px;" id="tAvisoVarPrecio">Precio sujeto a cambio.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" style="z-index: 99999;" id="avisoDisclaimerDisponibilidad">
+        <div class="group-btn__detalle" style="max-height: 150px;max-width: 300px;min-width: 250px;">
+            <div class="btn-detalle__botinfo-content">
+                <p style="margin: 20px;font-size: 16px;" id="tAvisoDisponibilidad">Confirmar disponibilidad con su asesor.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="group-btn__detalle-background settings hidden" id="settings">
+        <div class="group-btn__detalle configuracion" id="group-btn__detalle">
+            <p class="btn-detalle__var-title" id="tConfiguracion">Configuración</p>
+            <div class="btnsPanelAmenidades" id="btnAutoRotate">Sin auto rotación</div>
+            <div class="btnsPanelAmenidades" id="btnOcultarBtns">Ocultar botones</div>
+            <div class="btnsPanelAmenidades" id="btnPantallaCompleta">Pantalla completa</div>
+            <div class="btn-detalle__btngroup">
+                <div class="btn-ficha__btngroup-back" id="btnRegresar7">Regresar</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group-btn__detalle-background hidden" style="z-index: 99999;" id="avisoWebGL">
+        <div class="group-btn__detalle" style="max-height: 245px;">
+            <p class="btn-detalle__var-title" style="margin-bottom: 0;" id="tNoWebGLError">Error</p>
+            <div class="btn-detalle__botinfo-content">
+                <p id="tNoWebGLtexto">Su navegador de internet o sistema operativo es incompatible con esta experiencia
+                    web. Favor de acceder desde otro dispositivo.</p>
+            </div>
+            <div onclick="location.href='https://www.duo24.mx/';" class="group-btn__item item-2" id="btnRegresar8"
+                style="background-color: #01c3c3; color: white;">Regresar</div>
+        </div>
+    </div>
+
+    <div class="footerMain">
+        <p class="footerAplicacion"><span style="font-family: arial; color: gray;" id="tAppPor">Aplicación por </span><a
+                class="footerLogica" id="btnLogica" href="https://www.logicaexp.com/" target="_blank"> Lógica</a></p>
+        <p class="footerAplicacion"><span class="footerCopyright" style="font-family: arial; font-size: 8px; color: gray;"
+                id="footerFecha">© 2021 - 2022</span></p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="js.js"></script>
+    <script src="flickity.pkgd.min.js"></script>
+</body>
+
+</html>

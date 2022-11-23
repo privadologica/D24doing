@@ -1,0 +1,22 @@
+{
+  "headers": [
+    {
+      "source": "/assets/babylon/001_D24.babylon",
+      "headers" : [
+        {
+          "key" : "Accept-Encoding",
+          "value" : "br"
+        }
+      ]
+    },
+    {
+        "source": "/assets/babylon/001_D24.babylon",
+        "headers" : [
+          {
+            "key" : "content-encoding",
+            "value" : "br"
+          }
+        ]
+    }
+  ]
+}
